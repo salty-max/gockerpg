@@ -1,3 +1,2 @@
-\i '/docker-entrypoint-initdb.d/tables/users.sql'
-\i '/docker-entrypoint-initdb.d/tables/posts.sql'
-\i '/docker-entrypoint-initdb.d/tables/events.sql'
+-- Tables to migrate
+-- \i '/docker-entrypoint-initdb.d/tables/sample.sql'
