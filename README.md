@@ -20,7 +20,11 @@ go run .
 
 Create your migration file in `migrations/postgres/tables`
 
-In `migrations/postgres/deploy_schemas.sql`:
+```shell
+touch migrations/postgres/tables/sample.sql
+```
+
+In `migrations/postgres/deploy_schemas.sql`
 
 Add lines for each desired table as follow
 ```sql
