@@ -4,3 +4,4 @@ docker-compose.yml
 .git
 LICENSE
 README.md
+**/DS_Store

@@ -11,18 +11,15 @@ RUN apk update && apk add --no-cache git
 # Set the current working directory inside the container
 WORKDIR /app
 
-# Copy go mod and sum files
-COPY go.mod go.sum ./
-
-# Download all dependencies
-# Dependencies will be cached go.mod and go.sum are not changed
-RUN go mod download
-
-# Copy the source from the current directory to the working directory
+# Copy source files
 COPY . .
 
+# Install and clean up dependencies
+# Dependencies will be cached go.mod and go.sum are not changed
+RUN go mod tidy
+
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./...
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd
 
 # Start a new stage from scratch
 FROM alpine:latest
@@ -32,6 +29,7 @@ WORKDIR /root/
 
 # Copy the pre-built binary file fron the previous stage
 COPY --from=builder /app/main .
+# COPY --from=builder /app/.env .
 # COPY --from=builder /app/templates ./templates
 # COPY --from=builder /app/pkg ./pkg
 COPY --from=builder /app/migrations ./migrations

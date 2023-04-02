@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
 	"os"
+
+	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	godotenv.Load()
 	router := mux.NewRouter()
 
 	port := os.Getenv("PORT")

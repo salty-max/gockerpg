@@ -22,6 +22,6 @@ services:
     volumes:
       - ./:/usr/src/app/
     ports:
-      - "1664:1664"
+      - "2308:2308"
     depends_on:
       - pg_db
